@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package CategoryPackage;
+
+service Category {
+    rpc listCategory(voidNoParam) returns (response);
+    // rpc createTodo(catAndSub) returns (TodoItem);
+    rpc addCategoryAndSub(catAndSub) returns (resCatAndSub);
+    rpc listWallets(voidNoParam) returns (walletResponse);
+
+}
+
+message voidNoParam {}
+
+
+message Singlceategory {
+    message SubCategory {
+        string  subcatid =1;
+        string  subcatname =2;
+        string  subcatimg=3;
+        string  subcatdisporder=4;
+       
+    }
+    string   catid =1;
+    string  catname =2;
+    string  catdisporder=3;
+    string  catimg=4;
+    repeated SubCategory subCategories=5;
+}
+message createTOdo {
+   
+    string text = 1;
+    // string name=2;
+   
+}
+
+message TodoItem {
+    int32 id = 1;
+    string text = 2;
+   
+}
+
+
+message response {
+
+  
+    repeated Singlceategory data=1;
+}
+message catAndSub{
+    int32 userId=1;
+    string catIds=2;
+    string subCatIds=3;
+
+
+}
+
+message resCatAndSub {
+    string msg=2;
+}
+
+message walletResponse {
+  message singleWallet{  
+    int32 walletId =1;
+    string walletName=2;
+    int32 isActive=3;
+}
+    repeated singleWallet data=3;
+     
+}
